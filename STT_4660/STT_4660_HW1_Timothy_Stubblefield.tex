@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage{amsfonts}
+
+\title{STT 4660 \\ Homework \#1}
+\author{Timothy Stubblefield}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+	\begin{enumerate}
+		\item The Population is all adults with normal vision.
+		\item The Parameter is the proportion of these adults who are fooled by the illusion.
+		\item The Sample is the 100 students in PSYCH 120.
+		\item The Statistic is the proportion of those 100 students who are fooled 
+			by the illusion.
+	\end{enumerate}
+
+\section*{Problem 2}
+	\begin{enumerate}
+		\item  We know,
+			\[Var(X_1) = Var(X_2) = 0.0169\]
+		\item And,
+			\[Cor(X_1,X_2) = 0.8\]
+		\item From the notes, we have the formula,
+			\[Cor(X_1,X_2) = \frac{Cov(X_1,X_2)}{\sqrt{Var(X_1)Var(X_2)}}\]
+		\item Rearrange the equation from (3), yielding
+			\[Cov(X_1,X_2) = Cor(X_1,X_2) \sqrt{Var(X_1)Var(X_2)}\]
+		\item Substituting values in, we get, 
+			\[ Cov(X_1,X_2) = 0.8 \sqrt{0.0169*0.0169}\]
+			\[ Cov(X_1,X_2) = 0.8 \sqrt{(0.0169)^2}\]
+			\[ Cov(X_1,X_2) = 0.8 (0.0169)\]
+			\[ Cov(X_1,X_2) = 0.0135\]
+		\item Now $X_1 - X_2$ has the form $a_1x_1 + a_2x_2$ where $a_1 = 1,a_2 = -1$
+		\item So, from the notes we have the formula,
+			\[Var(X_1 - X_2) = (a_1)^2Var(X_1) + (a_2)^2Var(X_2) +2a_1a_2Cov(X_1,X_2)\]
+		\item Evaluate equation with the known values, yielding,
+			\[Var(X_1 - X_2) =  1^2(0.0169) + (-1)^2(0.0169) + 2(1)(-1)(0.0135)\]
+			\[Var(X_1 - X_2) =  0.3380 - 0.0270\]
+			\[Var(X_1 - X_2) = 0.3310\] 
+	\end{enumerate}
+
+\section*{Problem 3}
+	\begin{enumerate}
+		\item List variables: 
+			$n = 24$, $\bar{x} = 5.23$, $S = 0.24$, $\alpha = 0.05$
+		\item We will assume that the popcorn weights follow a normal distribution.
+		\item Construct the following hypothesis test situation,
+			\[H_0: \mu = 5.5\]
+			\[H_a: \mu \neq 5.5\]
+		\item Utilize the p-value method and T-test.
+		\item The equation for T-test is,
+			\[t_{obs} = \frac{\bar{x}-\mu}{S/\sqrt{n}}\]
+		\item Substituting in our values, we get,
+			\[t_{obs} = \frac{5.23-5.5}{0.24/\sqrt{24}}\]
+			\[t_{obs} = -5.511352\]
+		\item Using R, we can calculate the p-value,
+			\[p-value = 0.00001324059\]
+		\item Since $0.00001324059 \leq 0.05$, we reject $H_0$
+		
+	\end{enumerate}
+			
+\end{document}

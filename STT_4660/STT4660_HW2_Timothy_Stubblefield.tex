@@ -1,0 +1,163 @@
+\documentclass{article}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+\title{STT 4660 \\ Homework \#2}
+\author{Timothy Stubblefield}
+\date{\today}
+
+\begin{document}
+	
+\maketitle
+
+\section*{1.21}
+	\begin{enumerate}[label= \alph*)]
+		\item From the data, we can calculate $\bar{x}$ with the formula,
+			\[\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i\]
+		\begin{enumerate}[label = \arabic*)]
+			\item Thus, $\bar{x} = 1$
+			\item Similarly, we can calculate $\bar{y}$ with the formula,
+				\[\bar{y} = \frac{1}{n}\sum_{i=1}^n y_i\]
+			\item Hence, $\bar{y} = 14.2$
+			\item Now, utilize the regression formula 
+				\[\hat{y} = b_0 + b_1x\]   where,
+				$b_1 = \frac{S_{xx}}{S_{xy}}$ and $b_0 = \hat{y} - b_1\bar{x}$
+			\item So, $S_{xx} = \sum_{i=1}^n x_i^2 - n\bar{x}^2$
+			\item Evaluating (5), we get,
+				\[S_{xx} = 10\]
+			\item Now, $S_{yy} = \sum_{i=1}^n y_i^2 - n\bar{y}^2$
+			\item Evaluating, (7), we get,
+				\[S_{yy} = 177.6\]
+			\item So, $S_{xy} = \sum_{i=1}^n x_iy_i - n\bar{x}\bar{y}$
+			\item Evaluating (9), we get, 
+				\[S_{xy} = 182-142\]
+				\[S_{xy} = 40\]
+			\item From our information gathered in 5-10 we can apply (4) yielding,
+				\[b_1 = \frac{S_{xy}}{S_{xx}}\]
+				\[b_1 = \frac{40}{10}\]
+				\[b_1 = 4\]
+			\item Similarly, we can solve for $b_0$ like so,
+				\[b_0 = \bar{y} - b_1\bar{x}\]
+				\[b_0 = 14.2 - 4(1)\]
+				\[b_0 = 14.2 - 4\]
+				\[b_0 = 10.2\]
+			\item Thus, the linear regression function is,
+				\[\hat{y} = 10.2 + 4x\]
+			\item Below is the scatterplot of the points,
+				\centering
+				\includegraphics[width = 10cm]{C:/Users/timst/R/Practice/STT 4660/Plot_for_1.21.png}
+		\end{enumerate}
+		\item Now, from the previous part, the regression function is,
+			\[\hat{y} = 10.2 +4x\]
+		\begin{enumerate}[label = \arabic*)]
+			\item We must find evaluate the function at $X = 1$.
+			\item So, we have the following,
+				\[\hat{y_1} = 10.2 + 4(1)\]
+				\[\hat{y_1} = 10.2 + 4\]
+				\[\hat{y_1} = 14.2\]
+		\end{enumerate}
+		\item Now use the same formula for two transfers.
+		\begin{enumerate}[label = \arabic*)]
+			\item Now, we want to evaluate the function at $X = 2$.
+			\item Thus, we have the following,
+				\[\hat{y_2} = 10.2 + 4(2)\]
+				\[\hat{y_2} = 10.2 + 8\]
+				\[\hat{y_2} = 18.2\]
+		\end{enumerate}
+	
+		\item Now, I will show that the regression line goes through $(\bar{x},\bar{y})$
+		\begin{enumerate}[label = \arabic*)]
+			\item Substitute in $\bar{x}$ and $\bar{y}$ into the regression function.
+			\item Thus, by inserting $\bar{x} = 1$ and $\bar{y} = 14.2$, we have
+				\[14.2 = 10.2 + 4(1)\]
+				\[14.2 = 10.2 + 4\]
+				\[14.2 = 14.2 \]
+				\[ \qquad \qquad  \qquad \qquad \qquad \qquad \blacksquare\]
+		\end{enumerate}
+			
+	\end{enumerate}
+
+\section*{1.25}
+	\begin{enumerate}[label = \alph*)]
+		\item I want to find the residual for the first case.
+		\begin{enumerate}[label = \arabic*)]
+			\item The formula for the residual is,
+				\[e_i = y_i - \hat{y_i}\]
+			\item Thus, for the first case, we have,
+				\[e_1 = y_1 - \hat{y_1}\]
+			\item Substitute in values for $y_1$ and $\hat{y_1}$, yielding,
+				\[e_1 = 16 - 14.2\]
+				\[e_1 = 1.8\]
+		\end{enumerate}
+		\item Now, lets find $\sum e_i^2$ and MSE
+			\begin{enumerate}[label = \arabic*)]
+				\item After calculating each $e_i$, I determined that,
+					\[\sum e_i^2 = SSE = 17.6\]
+				\item This can also be calculated another way, as shown,
+					\[SSE = S_{yy} - b_1S_{xy}\]
+					\[SSE = 177.6 - 4(40)\]
+					\[SSE = 177.6 - 160\]
+					\[SSE = 17.6\]
+				\item And, we know $MSE = S^2$
+				\item Now, we calculate the MSE to estimate the $\sigma^2$
+				\item And, we can use the following formula,
+					\[S^2 = MSE = \frac{SSE}{n-2}\]
+				\item Just evaluate the expression with the calculated SSE from (1) and n, yielding
+				 	\[S^2 = MSE = \frac{17.6}{10-2}\]
+				 	\[S^2 = MSE = \frac{17.6}{8}\]
+				 	\[S^2 = MSE = 2.2\]
+			\end{enumerate}
+	\end{enumerate}
+
+\section*{1.33}
+	We want to derive the Least Squares Estimator of $\beta_0$ for the regression model,
+		\[Y_i = \beta_0 + \epsilon_i\]
+	\begin{enumerate}[label = \arabic*)]
+		\item We know the formula for SSE of Least Squares is,
+			\[SSE = \sum(y_i - \beta_0 - \beta_1x)^2\]
+		\item Since $\beta_1 = 0$, the formula becomes,
+			\[Q(\beta_0) = SSE = \sum(y_i - \beta_0)^2\]
+		\item To minimize SSE, take the derivative and set to 0, yielding
+			\[\frac{dQ}{d\beta_0} = \frac{d}{d\beta_0} \sum(y_i - \beta_0)^2 = 0 \]
+			\[\frac{dQ}{d\beta_0} = 2\sum(y_i - \beta_0)  (-1) = 0\]
+			\[\frac{dQ}{d\beta_0} = -2\sum(y_i - \beta_0) = 0\]
+			\[\frac{dQ}{d\beta_0} = \sum(y_i - \beta_0) = 0\]
+		\item Thus, the Normal Equation for $\beta_0$ estimator is,
+			\[ \sum(y_i - b_0)= 0\]
+		\item Now, rearrange the equation from (4) to solve for $b_0$.
+			\[\sum y_i - nb_0 = 0\]
+			\[nb_0 = \sum y_i\]
+			\[b_0 = \frac{\sum y_i}{n}\]
+		\item Hence, the Least Squares Estimator for $\beta_0$ is,
+			\[b_0 = \frac{\sum y_i}{n}\]
+			\[\qquad \qquad \qquad \qquad \qquad \qquad \blacksquare\]
+			
+	\end{enumerate}
+
+\section*{1.34}
+	We want to show that the Least Squares Estimator, $b_0$, of $\beta_0$, is unbiased.
+	\begin{enumerate}
+		\item Recall from Problem 1.33 that,
+			\[b_0 = \frac{\sum y_i}{n}\]
+		\item By applying definition of $\bar{y}$ we can see, 
+			\[b_0 = \bar{y}\]
+		\item Now, evaluate the expected value of $b_0$, yielding
+			\[E(b_0) = E(\bar{y})\]
+			\[E(b_0) = E(\frac{1}{n}\sum y_i)\]
+		\item Remember, 
+			\[E(\sum y_i) = \sum \beta_0 + \beta_1x_i\]
+		\item Thus, applying (4) to (3), we have,
+			\[E(b_0) = \frac{1}{n}\sum (\beta_0 + \beta_1x_i)\]
+		\item But, remember $\beta_1 = 0$, so
+			\[E(b_0) = \frac{1}{n} \sum \beta_0\]
+			\[E(b_0) = \frac{1}{n}n\beta_0\]
+			\[E(b_0) = \beta_0\]
+		\item Thus, $b_0$ is unbiased.
+			\[\qquad \qquad \qquad \qquad \qquad \blacksquare\]
+	\end{enumerate}
+		
+\end{document}
+
+

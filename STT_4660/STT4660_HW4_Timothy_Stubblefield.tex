@@ -1,0 +1,272 @@
+\documentclass{article}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+\title{STT 4660 \\ Homework \#4}
+\author{Timothy Stubblefield}
+\date{\today}
+
+\usepackage[svgnames]{xcolor}
+\usepackage{listings}
+
+\lstset{language=R,
+	basicstyle=\small\ttfamily,
+	stringstyle=\color{DarkGreen},
+	otherkeywords={0,1,2,3,4,5,6,7,8,9},
+	morekeywords={TRUE,FALSE},
+	deletekeywords={data,frame,length,as,character},
+	keywordstyle=\color{blue},
+	commentstyle=\color{DarkGreen},
+}
+
+\begin{document}
+	
+\maketitle
+
+\section*{2.15 (b)}
+	\begin{enumerate}[label = \arabic*)]
+		\item Refer to the Airfreght Breakage dataset from Problem 1.21
+		\item Given a new shipment of two transfers, we want to find 99 percent confidence interval for this new shipment.
+		\item Since we have two transfers, we know that,
+		\[x_{new} = 2\]
+		\item And from Problem 1.21, we know that the linear regression model is,
+		\[\hat{y} = 10.2 +4x\]
+		\item Thus, we can solve for $\hat{y}_{new}$ with the following formula,
+		\[\hat{y}_{new} = 10.2 + 4x_{new}\]
+		\item Substituting in the value for $x_{new}$, we get,
+		\[\hat{y}_{new} = 10.2 + 4(2)\]
+		\[\hat{y}_{new} = 10.2 + 8\]
+		\[\hat{y}_{new} = 18.2\]
+		\item Now, use the following formula to construct a 99 percent confidence interval for $y_{new}$,
+		\[\hat{y}_{new} \pm t_{\alpha/2} * S_{pred}\] 
+		\item First, we need to solve for $S_{pred}$, with the following formula,
+		\[S_{pred}^2 = \hat{\sigma}^2[1 + \frac{1}{n} + \frac{(x_{new}-\bar{x})^2}{S_{xx}}]\]
+		\item From the previous results, we know that,
+		\[\hat{\sigma}^2 = MSE = 2.2\]
+		\item From the same problem, we also know that,
+		\[S_{xx} = \sum(x_i - \bar{x})^2 = 10\]
+		And, that $n = 10 \qquad \qquad \bar{x} = 1$
+		\item Substituting in these values, we can calculate $S_{pred}^2$ as such,
+		\[S_{pred}^2 = 2.2[1+ \frac{1}{10} + \frac{(2-1)^2}{10}]\]
+		\[S_{pred}^2 = 2.2[1 + \frac{1}{10} + \frac{1}{10}]\]
+		\[S_{pred}^2 = 2.2[\frac{5}{5} + \frac{1}{5}]\]
+		\[S_{pred}^2 = 2.2(\frac{6}{5})\]
+		\[S_{pred}^2 = 2.64\]
+		\item Now, compute $S_{pred}$ by taking square root of $S_{pred}^2$,
+		\[S_{pred} = \sqrt{2.64}\]
+		\[S_{pred} = 1.624807681\]
+		\item Since we want a 99 percent confidence interval, we use $\alpha = 0.01$.
+		\item Now we need to compute the t-value, that is,
+		\[t_{\alpha/2}(n-2) = t_{0.01/2}(10-2)\]
+		\[t_{0.005}(8) = 3.355387\]
+		\item Now, we can construct the 99 percent confidence interval for $y_{new}$ by substituting in the appropriate values,
+		\[18.2 \pm 3.355387 * 1.624807681\]
+		\[18.2 \pm  5.774355273\]
+		\item Thus, the 99 percent confidence interval for $y_{new}$ is,
+		\[(12.42564473, 23.97435527)\]
+		\item Therefore, we are 99 percent confident that $y_{new}$ lies in the range of (12.42564473, 23.97435527).
+	\end{enumerate}
+
+\section*{2.17}
+	\begin{enumerate}[label = \arabic*)]
+		\item Given the F-test of
+		\[H_0: \beta_1 = 0\]
+		\[H_a: \beta_1 \neq 0\]
+		The analyst concluded that the p-value = 0.033.
+		\item For the F-test, the analyst concluded $H_a: \beta_1 \neq 0$.
+		\item Since $H_a$ was concluded, that means that $H_0$ was rejected. Therefore, that means p-value = 0.033 $< \alpha$.
+		\item Thus, the the $\alpha$ is greater than 0.033.
+		\item Now, if the analyst used an $\alpha = 0.01$, then,
+		\[p-value = 0.033 > \alpha = 0.01\]
+		\item Therefore, with $\alpha = 0.01$, the analyst would not reject $H_0$ and would thus have evidence that $\beta_1 = 0$.
+	\end{enumerate}
+
+\section*{2.25}
+	\begin{enumerate}[label = \alph*)]
+		\item Referring to the Airfreight Breakage data of Problem 1.21, we want to set up the ANOVA table.
+		\begin{enumerate}[label = \arabic*)]
+			\item Here is the ANOVA Table from SAS
+			\centering
+			\includegraphics[width=10cm]{C:/Users/timst/R/Practice/STT 4660/ANOVA_Table_2_25.PNG}
+		\end{enumerate}
+		\item Now, we want to construct an F-test with $\alpha = 0.05$.
+		\begin{enumerate}[label = \arabic*)]
+			\item For the F-test, we are testing the hypotheses,
+			\[H_0: \beta_1 = 0\]
+			\[H_a: \beta_1 \neq 0\]
+			\item Well, we new that,
+			\[F_{obs} = \frac{MSR}{MSE} = \frac{160}{2.2}\]
+			\[F_{obs} = 72.727272\]
+			\item Use the p-value method to find,
+			\[p-value = P(F > 72.727272)\]
+			\item From R, we determined that p-value = 0.00002784
+			\item Thus, we have the result,
+			\[p-value = 0.00002784 < \alpha = 0.05\]
+			\item Therefore, reject $H_0$ and conclude $H_a$.
+			\item Thus, we can say that there is evidence to show that $\beta_1 \neq 0$ and subsequently, that there is a linear relationship between X and Y.
+		\end{enumerate}
+		\item Determine the t* statistic and show that it is numerically equivalent to the F-test.
+		\begin{enumerate}[label = \arabic*)]
+			\item Let's perform a T-test on $\beta$ using the following formula,
+			\[t_{obs} = \frac{b_1}{S_{b_1}}\]
+			\item From Problem 2.6 in HW3, we know $S_{b_1} = 0.469041576$
+			\item Substituting in appropriate values, we get,
+			\[t_{obs} = \frac{4}{0.469041576}\]
+			\[t_{obs} = 8.528028654\]
+			\item Now compute the p-value for the t-test using R or SAS, and we get,
+			\[p-value = 0.00002784\]
+			\item Notice, the p-value for F-test and the T-test are the same. Thus, the two tests are equivalent.
+		\end{enumerate}
+		\item Finally, lets calculatte $R^2$ and r.
+		\begin{enumerate}
+			\item To calculate the coefficient of determination, $R^2$, use the forumula,
+			\[R^2 = \frac{SSR}{SSTO}\]
+			\item Filling in the values from the ANOVA Table, we have,
+			\[R^2 = \frac{160}{177.6}\]
+			\[R^2 = 0.900900900\]
+			\item Therefore, around 90 percent of the variation in Y is explained by introducing X into the regression model.
+		\end{enumerate}
+	\end{enumerate}
+
+\section*{2.30}
+	\begin{enumerate}[label = \alph*)]
+		\item Using the Crime Rate Data from 1.28, use a t-test with $\alpha = 0.01$ to determine if there is a linear relationship between crime rate and percentage of high school graduates.
+		\begin{enumerate}[label = \arabic*)]
+			\item Since we are testing to see if X and Y are linearly related, the hypothesis situation will be,
+			\[H_0: \beta_1 = 0\]
+			\[H_a: \beta_1 \neq 0\]
+			\item From the SAS output, the linear regression function is,
+			\[\hat{y} = 20518 - 170.57519x\]
+			\item Here is the scatterplot of the data,
+				\centering
+				\includegraphics[width=10cm]{C:/Users/timst/R/Practice/STT 4660/Plot_for_2.30.png}
+				
+			\item Now, we need to calculate the $t_{obs}$ using the formula,
+			\[t_{obs} = \frac{b_1 - \beta_{10}}{S_{b_1}}\]
+			\item So, we know from the SAS output that,
+			\[b_1 = -170.57519, \quad \qquad \beta_{10} = 0, \quad \qquad S_{b_1} = 41.57433\]
+			\item Substituting in these values, we get,
+			\[t_{obs} = \frac{-170.57519 - 0}{41.57433}\]
+			\[t_{obs} = \frac{-170.57519}{41.57433}\]
+			\[t_{obs} = -4.102896908\]
+			\item From the notes, we know that 
+			\[t = \frac{b_1}{S_{b_1}} \thicksim t(n-2) \qquad  under \qquad H_0: \beta_1 = 0\]
+			\item Now, use R or SAS to compute the p-value, that is,
+			\[p-value = 0.001202528\]
+			\item So, compare p-value to $\alpha$, as such,
+			\[p-value = 0.001202528 < 0.01 = \alpha\]
+			\item Since p-value $< \alpha$, then we reject $H_0$ and conclude $H_a$.
+			\item Therefore, we have evidence that shows $\beta_1 \neq 0$, and subsequently, that there is a linear relationship between high school graduation rate and crime rate.
+		\end{enumerate}
+		\item Now, lets's estimate $\beta_1$ with a 99 percent confidence interval.
+		\begin{enumerate}[label = \arabic*)]
+			\item A 99 percent confidence interval for $\beta_1$ is,
+			\[b_1 \pm t_{\alpha/2}(n-2) * S_{b_1}\]
+			And, $\alpha = 0.01$, so $\quad \frac{\alpha}{2} = 0.005$
+			\item First, we need to compute $t_{\alpha/2}(n-2)$, as such,
+			\[t_{\alpha/2}(n-2) = t_{0.005}(84-2)\]
+			\item Using a two-tailed T-test, the evaluated t-value from R is,
+			\[t_{0.005}(82) = 2.637123\]
+			\item Now, from previous results we know that $b_1 = -170.57519$ and $S_{b_1} = 41.57433$.
+			\item Thus, substitute in the values to the equation from (1), to find the confidence interval,
+			\[-170.57519 \pm 2.637123 * 41.57433\]
+			\[-170.57519 \pm 109.6366219\]
+			\item Thus, the 99 percent confidence interval for $\beta_1$ is,
+			\[(-280.2118119, -60.9385681)\]
+			\item Therefore, we are 99 percent confident that the true value of $\beta_1$ lies in the range of (-280.2118119, -60.9385681).
+		\end{enumerate}
+	\end{enumerate}
+
+\section*{2.32}
+	\begin{enumerate}[label = \alph*)]
+		\item Referring to the Crime Rate data use in 2.30, we want to find the full and reduced regression models.\\
+		Here is the ANOVA Table for Crime Rate Data using SAS
+		
+			\includegraphics[width=10cm]{C:/Users/timst/R/Practice/STT 4660/ANOVA_Table_2_32.PNG}
+		\begin{enumerate}[label = \arabic*)]
+			\item From Problem 2.30, we determined the regression model to be 
+			\[\hat{y} = 20518 - 170.57519x\]
+			\item Since we are using the Simple Linear Regression (SLR) model, the full model is the regression function with $\beta_1 \neq 0$ and the reduced model is the intercept only model of the regression function where $\beta_1 = 0$.
+			\item Thus, the full and reduced models are as follows,
+			\[Full Model:\quad \hat{y} = 20518 - 170.57519x\]
+			\[Reduced Model:\quad \hat{y} = 20518 \]
+		\end{enumerate}
+		\item Now, let's obtain some useful statistics.
+		\begin{enumerate}[label = \arabic*)]
+			\item As detailed in the notes, the $SSE(F)$ uses the full model so,
+			\[SSE(F) = SSE\]
+			 Looking at the ANOVA Table from (a), we have,
+			\[SSE(F) = 5552112\]
+			\item Now, we want to find $SSE(R)$.
+			 The notes specify that in the SLR model,
+			\[SSE(R) = \sum (y_i - \hat{y}_i)^2 = \sum (y_i - \bar{y})^2 = SSTO\] 
+			From the ANOVA Table, we can see that,
+			\[SSE(R) = SSTO = 548736108\]
+			\item Next, we need to calculate $df_F$
+			From the book, we can see that 
+			\[df_F = n-2\]
+			Also, we know n =84.
+			Thus, substituting in values, we get,
+			\[df_F = 84-2\]
+			\[df_F = 82\]
+			\item Now, let's calculae $df_R$
+			From the book, we can determine that
+			\[df_R = n-1\]
+			Thus, substituting in the value, n=84, we get,
+			\[df_R = 84-1\]
+			\[df_R = 83\]
+			\item Find the statistic F* for the general linear test.
+			The formula for F* for the general linear test is,
+			\[F* = \frac{SSLF/1}{SSE(F)/(n-2)}\]
+			First, we need to compute the SSLF, using the following formula,
+			\[SSLF = SSE(R)-SSE(F)\]
+			Substitute in the appropriate values to determine SSLF,
+			\[SSLF = 548736108 - 5552112\]
+			\[SSLF = 543183996\]
+			Now, substitute in the values to compute F*,
+			\[F* = \frac{543183996/1}{5552112/(84-2)}\]
+			\[F* = \frac{543183996}{5552112/82}\]
+			\[F* = \frac{543183996}{67708.68293}\]
+			\[F* = 8022.368365\]
+			\item Determine the decision from the F-test.
+			Construct the following hypothesis test scenario,
+			\[H_0: \beta_1 = 0\]
+			\[H_a: \beta_1 \neq 0\]
+			Now, $F* \thicksim F(df(SSLF), df(SSE(F))) $. 
+			
+			Find $df(SSLF)$ using the formula,
+			\[df(SSLF) = df(SSE(R)) - df(SSE(F))\]
+			Since SSE(F) = SSE, then from ANOVA Table,
+			\[df(SSE(F)) = df(SSE) = 82\]
+			Similarly, since SSE(R) = SSTO, from the ANOVA Table,
+			\[df(SSE(R)) = df(SSTO) = 83\]
+			Evaluate using the correct values, yielding,
+			\[df(SSLF) = 83 - 82\]
+			\[df(SSLF) = 1\]
+			So, then we know,
+			\[F* \thicksim F(1,82)\]
+			We need to find the p-value, which can be computed like so,
+			\[p-value = P(F > F*_{obs})\]
+			\[p-value = P(F > 8022.368365)\]
+			Using the following R code to calculate the p-value,
+			\begin{lstlisting}
+			p_value <- pf(8022.368365,1,82, lower.tail = FALSE)
+			p_value
+			\end{lstlisting}
+			And so, the p-value for the F-test is,
+			\[p-value = 1.42806 *10^{-83}\]
+			We are testing using $\alpha = 0.01$, but regardless of whatever $\alpha$ we used, we see that,
+			\[p-value = 1.42806 *10^{-83} < \alpha\]
+			Therefore reject $H_0$ and conlcude $H_a$. Thus, there is reason to believe that crime rate and high school graduation rate a related.
+		\end{enumerate}
+		\item Finally, we need to determine if the decision rule from using F* is the same as using the T-test in 2.30 (a).
+		\begin{enumerate}[label = \arabic*)]
+			\item While both tests ended up rejecting $H_0$ because the p-value $< \alpha$, the two p-values were different. The p-values are as follows,
+			\[p-value \quad for \quad T-test = 0.001202528\]
+			\[p-value \quad for \quad F-test = 1.42806 *10^{-83}\]
+			\item 	Even though these p-values will reach the same conclusion for most values of $\alpha$, they are not technically equivalent, and thus, the two tests are not truly equivalent either.
+		\end{enumerate}
+	\end{enumerate}
+\end{document}

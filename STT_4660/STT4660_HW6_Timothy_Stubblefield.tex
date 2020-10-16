@@ -1,0 +1,131 @@
+\documentclass{article}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\title{STT 4660 \\ Homework \#6}
+\author{Timothy Stubblefield}
+\date{\today}
+
+\usepackage{xcolor}
+\usepackage{listings}
+
+\lstset{language=SAS, 
+	breaklines=true,  
+	basicstyle=\ttfamily\bfseries,
+	columns=fixed,
+	keepspaces=true,
+	identifierstyle=\color{blue}\ttfamily,
+	keywordstyle=\color{cyan}\ttfamily,
+	stringstyle=\color{purple}\ttfamily,
+	commentstyle=\color{green}\ttfamily,
+} 
+
+\begin{document}
+	
+\maketitle
+
+\section*{3.5 (e)}
+	\begin{enumerate}[label = \arabic*)]
+		\item First, the normal Probability Plot is below,
+		
+		\includegraphics[width=10cm]{C:/Users/timst/git/STT-4660/STT 4660/3_5_QQPlot}
+		\item To calculate the correlation of coefficient consider the equation,
+		\[r = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \sum (y_i - \bar{y})^2}}\]
+		\item Using the following SAS Code, I obtained the Pearson Correlation Coeficcient (r),
+	
+		\includegraphics{C:/Users/timst/git/STT-4660/STT 4660/3_5_SASCode}
+		\item As a result, the associated printout in SAS is,
+		
+		\includegraphics{C:/Users/timst/git/STT-4660/STT 4660/3_5_CorCoef}
+		\item Therefore, we have the following,
+		\[\text{Correlation Coefficient} = r = 0.94916\]
+		\item We are setting up an F-test for normality where,
+		\[H_0: F = normal\]
+		\[H_a: F \neq normal\]
+		\item Now, compare r to the value in Table B.6 when $\alpha = 0.01$ and n = 10
+		\[\text{Critical Value} = 0.879\]
+		\item So the critical region is $r < 0.879$.
+		\item Since $r = 0.9416 > 0.879$, our correlation coefficient is outside the critical range and thus, we fail to reject $H_0$, essentially concluding $H_0$.
+		\item Therefore, there is evidence to show that the data follows a normal distribution.
+	\end{enumerate}
+
+\section*{3.5 (g)}
+	\begin{enumerate}[label = \arabic*)]
+		\item So we know that $\chi_{Bp}^2 = 1.03$ from the problem.
+		\item I will now show how the B-P test statistic was computed.
+		\item From the notes, we have the equation,
+		\[\chi_{Bp}^2 = \frac{SSR^*/2}{(SSE/n)^2}\]
+		\item So, SSR* is just the SSR for the model,
+		\[y_i' = e_i^2 = r_0 +r_1x_i + \delta_i\]
+		\item When running the model in SAS, the residuals are provided by the printout.
+		Now, we can square each $e_i$ to get $e_i^2$ or $y_i'$ as it is referred to in the new model.
+		\item Below is the SAS code that shows the data of $e_i^2$ vs $x_i$ and the generation of the linear model
+		
+		\includegraphics{C:/Users/timst/git/STT-4660/STT 4660/3_5_g_e^2&Code}
+		\item Now, the ANOVA Table for the $e_i^2$ linear regression model is,
+		
+		\includegraphics{C:/Users/timst/git/STT-4660/STT 4660/3_5_g_ANOVA}
+		\item From the new ANOVA Table, we can see that SSR* = 6.4
+		\item From original ANOVA Table from previous problems, we know that SSE = 17.6
+		\item Now substitute our values in to the B-P test statistic formula as such,
+		\[\chi_{Bp}^2 = \frac{6.4/2}{(17.6/10)^2}\]
+		\[\chi_{Bp}^2 = \frac{3.2}{3.0976}\]
+		\[\chi_{Bp}^2 = 1.033057851\]
+		Now, rounding this to two decimals we have,
+		\[\chi_{Bp}^2 = 1.03\]
+		\[\qquad \qquad \qquad \blacksquare \]
+		\item Now, to perform the hypothesis test of,
+		\[H_0: r_1 = 0 \quad \text{(constant variance)}\]
+		\[H_a: r_1 \neq 0 \quad \text{(nonconstant variance)}\]
+		\item So we know $\chi_{Bp}^2 \thicksim \chi^2(1) \quad \text{under} \quad H_0$
+		\item Now, using SAS, I computed the p-value,
+		\[p-value = 0.23487\]
+		\item So $p-value = 0.38487 > 0.1 = \alpha$.
+		\item Therefore, do not reject $H_0$, and thus conclude $H_0$.
+		\item Thus, there is evidence to say that the residuals have constant variance.
+	\end{enumerate}
+
+\section*{3.15}
+	\begin{enumerate}[label = \alph*)]
+		\item First, we want to fit a linear regression function.
+		\begin{enumerate}[label = \arabic*)]
+			\item By using SAS, I found that the regression function is,
+			\[y = 2.57533 - 0.3240x\]
+		\end{enumerate}
+		\item Now, perform and F-test for Lack of Fit using $\alpha = 0.025$.
+		\begin{enumerate}[label = \arabic*)]
+			\item Let's perform an F-test to test the hypothesis,
+			\[H_0: \text{Linear Model is Correct}\]
+			\[H_a: \text{Linear Model is Not Correct}\]
+			\item In SAS, you can use the /lackfit after the model type to generate the ANOVA Table for the Lack of Fit test.
+			\item The ANOVA Table for Lack of Fit test is below,
+			
+			\includegraphics{C:/Users/timst/git/STT-4660/STT 4660/3_15_ANOVA_LOF}
+			\item From the notes, we have that,
+			\[F^* = \frac{SSLF/df(SSLF)}{SSE(F)/df(SSE(F)} = \frac{MSLF}{MSPE}\]
+			\item By looking at the ANOVA Table, we can see that,
+			\[MSLF = 0.92242\]
+			\[MSPE = 0.01574\]
+			\item Thus, substitute in values to compute F*,
+			\[F^* = \frac{0.92242}{0.01574}\]
+			\[F^* = 58.60\]
+			(As you see, we could have also got F* from the ANOVA Table)
+			\item And, we know $F^* \thicksim F(df(SSLF),df(SSPE))$, so
+			\[F^* \thicksim F(3,10)\]
+			\item From SAS we have that,
+			\[p-value = 0.000000096\]
+			\item Hence, $p-value = 0.000000096 < 0.025 = \alpha$.
+			\item Therefore, we reject $H_0$ and conclude $H_a$.
+			\item Thus, there is evidence to show that the linear model we built does not
+			accurately suit the data.
+		\end{enumerate}
+		\item Finally, do we know what regression model is appropriate for the data?
+		\begin{enumerate}[label = \arabic*)]
+			\item In Part (b), we determine that our simple linear regression model does not fit the data.
+			\item Even though we concluded that a linear regression function is not appropriate to model the data, we still do not know what model is appropriate for the data. Potentially, a quadratic regression model or exponential regression model would best fit the data. However, we do not know. In order to determine an appropriate model, we would need to build more models and then perform Lack of Fit tests until one of them is accepted by hypothesis testing.
+		\end{enumerate}
+	\end{enumerate}
+\end{document}

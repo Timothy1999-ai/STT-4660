@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+\title{STT 4660 \\ Homework \#5}
+\author{Timothy Stubblefield}
+\date{\today}
+
+\usepackage[svgnames]{xcolor}
+\usepackage{listings}
+
+
+\begin{document}
+	
+\maketitle
+
+\section*{3.16 (e)}
+	\begin{enumerate}[label = \arabic*)]
+		\item Referring to the Solution concentration problem from 3.15, X = Time and Y = Concentration of solution.
+		\item The residuals for Solution Concentration are as follows.
+		
+		\includegraphics[width=10cm, height=12cm]{C:/Users/timst/git/STT-4660/STT 4660/3_16_d(ResPredData).PNG}
+		\item Now, the plot of Residuals vs Predicted Values is as follows.
+		
+		\includegraphics[width=10cm]{C:/Users/timst/git/STT-4660/STT 4660/3_16_d(ResPred).PNG}
+		\item Now, that we have the necessary plots, we can make some conclusions.
+		Looking at Residuals vs Predicted Values graph, the points appear to form a U shape. This implies that the relationship between X(Time) and Y(Solution Concentration) likely has a non-linear relationship instead of a linear relationship. Due to the U-shape of the graph, perhaps the relationship is quadratic.
+		
+		\item Finally, the Normal Probability Plot or QQ plot is below.
+		
+		\includegraphics[width=10cm]{C:/Users/timst/git/STT-4660/STT 4660/3_16_d(QQPlot).PNG}
+		\item Looking at the Normal Probability Plot and consulting the notes/textbook, it  seems that Solution Concentration data is underdispersed compared to data that follows a normal distribution. As a result, there are less outliers in the data compared to data with a normal distribution.		
+		
+	\end{enumerate}
+
+\section*{3.17 (e)}
+	\begin{enumerate}[label = \arabic*)]
+		\item In this problem, we are looking at Sales Growth, that is X = Year and Y = Thousands of Units Sold.
+		\item The residuals for Sales Growth as as follows.
+		
+		\includegraphics[width=10cm,height=10cm]{C:/Users/timst/git/STT-4660/STT 4660/3_17_d(ResPredData).PNG}
+		\item Now, the plot of Residuals vs Predicted Values is as follows.
+		
+		\includegraphics[width=10cm]{C:/Users/timst/git/STT-4660/STT 4660/3_17_d(ResPred).PNG}
+		\item Time to make conclusions some conclusions with the plot.
+		Upon viewing the Residuals vs Predicted Values plot, the points do not create any visible pattern or shape. This is the ideal case and means there is no relationship between Residuals and Predicted Value. Therefore, it is likely that there is a linear relationship between X(Year) and Y(Thousands of Units Sold).
+		
+		\item Lastly, the Normal Probability Plot or QQ plot is below.
+		
+		\includegraphics[width=10cm]{C:/Users/timst/git/STT-4660/STT 4660/3_17_d(QQPlot).PNG}
+		\item Looking at the Normal Probability plot and comparing the result to the notes, it appears that Sales Growth data is overdispersed compared to data that follows a normal distribution. Therefore, there are more outliers in this data compared to data with a normal distribution.
+	\end{enumerate}
+
+\section*{3.18 (d)}
+	\begin{enumerate}[label = \arabic*)]
+		\item In this problem, we are looking at Production Time, where X = Production Lot Size and Y = Production Time in Hours.
+		\item There are 111 residuals for Production Time and thus it is too large to save with the snipping tool and also quite cumbersome to include it the pdf.
+		\item So, the plot of Residuals vs Predicted Values is as follows.
+		
+		\includegraphics[width=10cm]{C:/Users/timst/git/STT-4660/STT 4660/3_18_d(ResPred).PNG}
+		\item With the data plotted successfully, we can look at the Residual vs Predicted Values plot and compare with the lecture notes. It seems there is no relationship between the two variables since the points appear to be scattered about the plot evenly. Thus, it is likely that there is a linear relationship between X(Production Lot Size) and Y(Production Time).
+		
+		\item Finally, the Normal Probability Plot or QQ Plot is below.
+		
+		\includegraphics[width=10cm]{C:/Users/timst/git/STT-4660/STT 4660/3_18_d(QQPlot).PNG}
+		\item When viewing the Normal Probability plot and comparing to the notes, the Probability Plot from 3.18 is the closest to a straight line (Ideal case) out of all the problems we have done. However, we can see that there is a slight left skew in the QQ Plot. Due to the left skewness, that means the left tail is heavier, and thus, there are more observations at lower values than at higher values.
+		
+		
+		
+	\end{enumerate}
+\end{document}
